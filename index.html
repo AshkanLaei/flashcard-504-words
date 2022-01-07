@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>504 absolutely essential words</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="vue.global.prod.js"></script>
+</head>
+<body>
+	<div id="root">
+		<div id="card">
+			<div id="top">
+				<button id="counter" @click="list = !list">{{id + 1}}</button>
+				<p id="word">{{words[id][0]}}</p>
+			</div>
+			<template v-if="meaning">
+				<hr>
+				<p id="meaning">{{words[id][1]}}</p>
+			</template>
+			<div id="buttons">
+				<button id="next" @click="id < 503 && id++" v-if="id < 503">کلمهٔ بعدی</button>
+				<button id="next" @click="id > 0 && id--" v-if="id > 0">کلمهٔ قبلی</button>
+				<button id="show" @click="meaning = !meaning">{{btnText}}</button>
+			</div>
+			<div id="settings">
+				<input type="checkbox" v-model="auto" id="auto"> <label for="auto">نمایش خودکار معانی</label>
+			</div>
+			<div id="list" v-if="list">
+				<p v-for="word, i in words" @click="id = i; list = false">{{word[0]}}</p>
+			</div>
+		</div>
+	</div>
+	<script src="app.js"></script>
+</body>
+</html>
